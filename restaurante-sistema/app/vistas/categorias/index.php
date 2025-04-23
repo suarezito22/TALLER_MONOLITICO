@@ -1,0 +1,1 @@
+<h1>Listado de Categorías</h1>
