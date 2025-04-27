@@ -1,7 +1,12 @@
-const express = require('express');
+import express from 'express';
+import { registrarCategoria, listarCategorias, actualizarCategoria, eliminarCategoria } from '../controladores/CategoriaControlador.js';
+
 const router = express.Router();
-const CategoriaControlador = require('../controladores/CategoriaControlador');
 
-router.get('/', CategoriaControlador.listar);
+// Rutas
+router.post('/categorias', registrarCategoria);
+router.get('/categorias', listarCategorias);
+router.put('/categorias/:id', actualizarCategoria);
+router.delete('/categorias/:id', eliminarCategoria);
 
-module.exports = router;
+export default router;

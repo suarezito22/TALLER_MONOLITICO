@@ -1,7 +1,12 @@
-const express = require('express');
+import express from 'express';
+import { registrarMesa, listarMesas, actualizarMesa, eliminarMesa } from '../controladores/mesaControlador.js';
+
 const router = express.Router();
-const MesaControlador = require('../controladores/MesaControlador');
 
-router.get('/', MesaControlador.listar);
+// Rutas para mesas
+router.post('/mesas', registrarMesa);
+router.get('/mesas', listarMesas);
+router.put('/mesas/:id', actualizarMesa);
+router.delete('/mesas/:id', eliminarMesa);
 
-module.exports = router;
+export default router;
