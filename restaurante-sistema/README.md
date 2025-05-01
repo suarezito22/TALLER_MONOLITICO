@@ -1,1 +1,0 @@
-# Sistema de Restaurante - Arquitectura MVC en PHP

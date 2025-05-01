@@ -1,1 +1,0 @@
-<h1>Detalle de la Orden</h1>
