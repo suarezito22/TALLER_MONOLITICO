@@ -1,0 +1,54 @@
+<h2>Reporte de Órdenes No Anuladas</h2>
+
+<form method="POST" action="router.php?controller=reporte&action=general">
+    <label>Fecha Inicio:</label>
+    <input type="date" name="fecha_inicio" value="<?= $fechaInicio ?>" required>
+
+    <label>Fecha Fin:</label>
+    <input type="date" name="fecha_fin" value="<?= $fechaFin ?>" required>
+
+    <button type="submit">Generar Reporte</button>
+</form>
+
+<?php if (!empty($ordenes)): ?>
+    <h3>Órdenes Registradas</h3>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Mesa</th>
+            <th>Total</th>
+        </tr>
+        <?php foreach ($ordenes as $o): ?>
+        <tr>
+            <td><?= $o['id'] ?></td>
+            <td><?= $o['fecha'] ?></td>
+            <td><?= $o['mesa'] ?></td>
+            <td>$<?= $o['total'] ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <p><strong>Total Recaudado:</strong> $<?= $total ?></p>
+
+    <h3>Platos Más Vendidos</h3>
+    <table border="1">
+        <tr>
+            <th>Plato</th>
+            <th>Cantidad Vendida</th>
+        </tr>
+        <?php foreach ($ranking as $r): ?>
+        <tr>
+            <td><?= $r['descripcion'] ?></td>
+            <td><?= $r['total_vendidos'] ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+<?php elseif ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
+    <p>No se encontraron órdenes en el rango de fechas.</p>
+<?php endif; ?>
+
+<br><br>
+<a href="../index.php">
+    <button type="button">Volver al Menú</button>
+</a>
