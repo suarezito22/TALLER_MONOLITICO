@@ -1,0 +1,117 @@
+/* Reset básico para evitar inconsistencias */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilos del título principal */
+h1 {
+    font-size: 36px;
+    color: #4CAF50;
+    margin-bottom: 30px;
+}
+
+/* Estilos para el menú de navegación */
+.navbar {
+    background-color: #333;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    display: inline-block;
+    width: 100%;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar > ul > li {
+    position: relative;
+    display: inline-block;
+    margin: 0 10px;
+}
+
+/* Enlaces del menú principal */
+.navbar > ul > li > a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 16px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto de hover en los enlaces del menú */
+.navbar > ul > li > a:hover {
+    background-color: #4CAF50;
+    border-radius: 5px;
+}
+
+/* Menú desplegable */
+.navbar li ul {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Para suavizar la transición */
+}
+
+/* Estilos para los elementos del submenú */
+.navbar li ul li {
+    display: block;
+    margin: 5px 0;
+}
+
+.navbar li ul li a {
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto de hover en los enlaces del submenú */
+.navbar li ul li a:hover {
+    background-color: #4CAF50;
+}
+
+/* Mostrar submenú al pasar el ratón sobre el elemento del menú */
+.navbar li:hover > ul {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;  /* Asegura que el submenú sea interactivo */
+}
+
+/* Permite que el submenú se quede visible por un tiempo tras mover el ratón */
+.navbar li ul:hover {
+    opacity: 1;
+    visibility: visible;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
