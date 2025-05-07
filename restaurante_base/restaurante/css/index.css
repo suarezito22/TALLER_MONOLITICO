@@ -1,117 +1,103 @@
-/* Reset básico para evitar inconsistencias */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Estilo global */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    padding: 20px;
-    text-align: center;
-}
-
-/* Estilos del título principal */
-h1 {
-    font-size: 36px;
-    color: #4CAF50;
-    margin-bottom: 30px;
-}
-
-/* Estilos para el menú de navegación */
-.navbar {
-    background-color: #333;
-    padding: 10px 0;
-    margin-bottom: 20px;
-    display: inline-block;
-    width: 100%;
-}
-
-.navbar ul {
-    list-style-type: none;
-    padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url('../recursos/fondo\ menu.jpeg'); /* Asegúrate que la ruta sea correcta */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.navbar > ul > li {
+/* Header con título */
+.header {
+    text-align: center;
+    margin-top: 20px;
+    
+}
+
+.header h1 {
+    
+    font-size: 2.5rem;
+    color: white; /* <-- Aquí está el cambio */
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* opcional para mejor contraste */
+    
+    
+}
+
+/* Estilo del menú de navegación */
+.navbar {
+    background-color: rgba(51, 51, 51, 0.7); /* versión semitransparente de #333 */
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Lista del menú */
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: inline-flex;
+}
+
+/* Ítems del menú */
+.menu-item {
     position: relative;
-    display: inline-block;
-    margin: 0 10px;
+    margin: 0 30px;
+    font-size: 1.5rem;
 }
 
-/* Enlaces del menú principal */
-.navbar > ul > li > a {
+.menu-item a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
-    padding: 8px 16px;
+    padding: 10px 20px;
     display: block;
-    transition: background-color 0.3s ease;
 }
 
-/* Efecto de hover en los enlaces del menú */
-.navbar > ul > li > a:hover {
-    background-color: #4CAF50;
-    border-radius: 5px;
-}
-
-/* Menú desplegable */
-.navbar li ul {
-    display: block;
+/* Submenú */
+/* Estilo del submenú */
+.submenu {
+    display: none; /* Mantiene oculto el submenú inicialmente */
+    list-style: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #333;
-    width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin-top: 10px;
+    background-color: #444;
+    min-width: 200px;
+    padding: 10px 0;
     z-index: 10;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Para suavizar la transición */
+    border-radius: 4px;
+    opacity: 0; /* Inicialmente no visible */
+    visibility: hidden; /* Lo oculta */
+    transform: translateY(10px); /* Lo coloca un poco más abajo */
+    transition: all 0.3s ease; /* Suaviza la transición */
 }
 
-/* Estilos para los elementos del submenú */
-.navbar li ul li {
-    display: block;
-    margin: 5px 0;
-}
-
-.navbar li ul li a {
+/* Estilo de los enlaces del submenú */
+.submenu li a {
     color: white;
-    padding: 10px;
-    font-size: 16px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-/* Efecto de hover en los enlaces del submenú */
-.navbar li ul li a:hover {
-    background-color: #4CAF50;
-}
-
-/* Mostrar submenú al pasar el ratón sobre el elemento del menú */
-.navbar li:hover > ul {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;  /* Asegura que el submenú sea interactivo */
-}
-
-/* Permite que el submenú se quede visible por un tiempo tras mover el ratón */
-.navbar li ul:hover {
-    opacity: 1;
-    visibility: visible;
-}
-
-a {
-    color: inherit;
+    padding: 8px 20px;
+    display: block;
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
+/* Cambio de color cuando el ratón pasa por encima */
+.submenu li a:hover {
+    background-color: #555;
 }
+
+/* Mostrar el submenú cuando el ratón pasa sobre el ítem */
+.menu-item:hover .submenu {
+    display: block; /* Muestra el submenú */
+    opacity: 1; /* Lo hace visible */
+    visibility: visible; /* Lo hace visible */
+    transform: translateY(0); /* Lo desplaza a su posición original */
+}
+
