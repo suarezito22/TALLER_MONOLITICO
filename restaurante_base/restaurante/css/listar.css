@@ -1,0 +1,97 @@
+/* Estilo general para el cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("../recursos/fondo listar.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Contenedor del menú */
+.menu-container {
+    width: 90%;
+    max-width: 900px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Títulos */
+h2 {
+    color: #000000;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Enlace para agregar un nuevo plato */
+a {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #0d286a;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #464643;
+}
+
+/* Estilo general para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Estilo para las celdas de la tabla */
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #007bff; /* Borde azul */
+    font-size: 1rem;
+}
+
+/* Fondo azul para los encabezados */
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Enlaces de eliminación con estilo */
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+/* Botón de volver al menú */
+button {
+    background-color: #0a0879;
+    font-size: 1rem;
+    border-radius: 10px;
+    color: #f7f7f7;
+    padding: 10px 20px;
+    border: 1px solid #007bff; /* Borde azul */
+    outline: none; /* Evita borde adicional al hacer clic */
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #464643; /* Cambia el color al pasar el mouse */
+}
