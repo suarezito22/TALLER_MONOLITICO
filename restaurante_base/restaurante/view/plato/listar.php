@@ -33,7 +33,7 @@
                 <td><?= $p['descripcion'] ?></td>
                 <td><?= $p['categoria'] ?></td>
                 <td><?= $p['cantidad'] ?></td>
-                <td><?= $p['precio_unitario'] ?></td>
+                <td><?= $p['precio'] ?></td> <!-- Cambié 'precio_unitario' por 'precio' -->
                 <td><a href="router.php?controller=plato&action=eliminar&id=<?= $p['id'] ?>">Eliminar</a></td>
             </tr>
             <?php endwhile; ?>

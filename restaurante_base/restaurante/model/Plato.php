@@ -9,13 +9,14 @@ class Plato {
     }
 
     public function guardar($descripcion, $categoria_id, $precio, $cantidad) {
-        $stmt = $this->conexion->prepare("INSERT INTO platos (descripcion, id_categoria, precio_unitario, cantidad) VALUES (?, ?, ?, ?)");
+        // Cambié precio_unitario por precio
+        $stmt = $this->conexion->prepare("INSERT INTO platos (descripcion, id_categoria, precio, cantidad) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("sidi", $descripcion, $categoria_id, $precio, $cantidad);
         return $stmt->execute();
     }
 
     public function obtenerTodos() {
-        // Cambiado 'categoria' por 'categorias' aquí
+        // Cambié precio_unitario por precio en la consulta
         $sql = "SELECT p.*, c.nombre AS categoria FROM platos p JOIN categorias c ON p.id_categoria = c.id";
         return $this->conexion->query($sql);
     }
@@ -28,7 +29,8 @@ class Plato {
     }
 
     public function actualizar($id, $descripcion, $precio) {
-        $stmt = $this->conexion->prepare("UPDATE platos SET descripcion = ?, precio_unitario = ? WHERE id = ?");
+        // Cambié precio_unitario por precio
+        $stmt = $this->conexion->prepare("UPDATE platos SET descripcion = ?, precio = ? WHERE id = ?");
         $stmt->bind_param("sdi", $descripcion, $precio, $id);
         return $stmt->execute();
     }
@@ -53,3 +55,4 @@ class Plato {
         return $resultado['total'] > 0;
     }
 }
+?>

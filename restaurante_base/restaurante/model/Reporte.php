@@ -8,12 +8,13 @@ class Reporte {
         $this->conexion = Conexion::getConexion();
     }
 
+    // Obtener órdenes no anuladas
     public function obtenerOrdenesNoAnuladas($fechaInicio, $fechaFin) {
         $stmt = $this->conexion->prepare("
             SELECT o.*, m.nombre AS mesa
-            FROM orden o
-            JOIN mesa m ON o.id_mesa = m.id
-            WHERE o.anulada = FALSE AND o.fecha BETWEEN ? AND ?
+            FROM ordenes o
+            JOIN mesas m ON o.id_mesa = m.id
+            WHERE o.anulada = 0 AND o.fecha BETWEEN ? AND ?
             ORDER BY o.fecha ASC
         ");
         $stmt->bind_param("ss", $fechaInicio, $fechaFin);
@@ -21,12 +22,13 @@ class Reporte {
         return $stmt->get_result();
     }
 
+    // Obtener órdenes anuladas
     public function obtenerOrdenesAnuladas($fechaInicio, $fechaFin) {
         $stmt = $this->conexion->prepare("
             SELECT o.*, m.nombre AS mesa
-            FROM orden o
-            JOIN mesa m ON o.id_mesa = m.id
-            WHERE o.anulada = TRUE AND o.fecha BETWEEN ? AND ?
+            FROM ordenes o
+            JOIN mesas m ON o.id_mesa = m.id
+            WHERE o.anulada = 1 AND o.fecha BETWEEN ? AND ?
             ORDER BY o.fecha ASC
         ");
         $stmt->bind_param("ss", $fechaInicio, $fechaFin);
@@ -34,13 +36,14 @@ class Reporte {
         return $stmt->get_result();
     }
 
+    // Obtener ranking de platos
     public function obtenerRankingPlatos($fechaInicio, $fechaFin) {
         $stmt = $this->conexion->prepare("
             SELECT p.descripcion, SUM(do.cantidad) AS total_vendidos
             FROM detalle_orden do
-            JOIN plato p ON do.id_plato = p.id
-            JOIN orden o ON do.id_orden = o.id
-            WHERE o.anulada = FALSE AND o.fecha BETWEEN ? AND ?
+            JOIN platos p ON do.id_plato = p.id
+            JOIN ordenes o ON do.id_orden = o.id
+            WHERE o.anulada = 0 AND o.fecha BETWEEN ? AND ?
             GROUP BY p.id
             ORDER BY total_vendidos DESC
         ");
@@ -49,6 +52,7 @@ class Reporte {
         return $stmt->get_result();
     }
 
+    // Obtener total de órdenes
     public function obtenerTotal($ordenes) {
         $total = 0;
         foreach ($ordenes as $o) {

@@ -17,6 +17,13 @@
         <button type="submit">Generar Reporte</button>
     </form>
 
+    <?php
+        // 👇 Agrega este bloque aquí para depurar (fuera del formulario)
+        echo "<pre>";
+        print_r($ordenes);
+        echo "</pre>";
+    ?>
+
     <?php if (!empty($ordenes)): ?>
         <div class="report-section">
             <h3>Órdenes Registradas</h3>

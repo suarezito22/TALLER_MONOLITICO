@@ -33,8 +33,27 @@ class Orden {
     }
 
     public function obtenerTodas() {
-        $sql = "SELECT o.*, m.nombre AS mesa FROM ordenes o JOIN mesas m ON o.id_mesa = m.id ORDER BY o.fecha DESC";
+        $sql = "SELECT o.*, m.nombre AS mesa 
+                FROM ordenes o 
+                JOIN mesas m ON o.id_mesa = m.id 
+                ORDER BY o.fecha DESC";
         return $this->conexion->query($sql);
+    }
+
+    public function obtenerPorId($id) {
+        $stmt = $this->conexion->prepare("
+            SELECT o.id, o.fecha, m.nombre AS mesa, o.anulada, 
+                   SUM(do.cantidad * do.precio_unitario) AS total
+            FROM ordenes o
+            JOIN mesas m ON o.id_mesa = m.id
+            LEFT JOIN detalle_orden do ON o.id = do.id_orden
+            WHERE o.id = ?
+            GROUP BY o.id
+        ");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        return $resultado->fetch_assoc();
     }
 
     public function obtenerDetalle($id_orden) {
@@ -48,16 +67,10 @@ class Orden {
         return $stmt->get_result();
     }
 
-    public function obtenerPorId($id) {
-        $stmt = $this->conexion->prepare("SELECT * FROM ordenes WHERE id = ?");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        return $stmt->get_result()->fetch_assoc();
-    }
-
     public function anular($id) {
         $stmt = $this->conexion->prepare("UPDATE ordenes SET anulada = TRUE WHERE id = ?");
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
 }
+?>
