@@ -7,7 +7,7 @@ class OrdenController {
 
     public function listar() {
         $modelo = new Orden();
-        $ordenes = $modelo->obtenerTodas();
+        $ordenes = $modelo->obtenerTodasConTotales();
         require 'view/orden/listar.php';
     }
 

@@ -1,5 +1,5 @@
 <!-- view/orden/detalle.php -->
-<div class="container">
+<link rel="stylesheet" href="css/ordenes.css"><div class="container">
     <h2>Detalle de la Orden #<?= $orden['id'] ?></h2>
     <p><strong>Fecha:</strong> <?= $orden['fecha'] ?></p>
     <p><strong>ID Mesa:</strong> <?= $orden['id_mesa'] ?></p>

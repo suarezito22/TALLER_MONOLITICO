@@ -32,29 +32,32 @@ class Orden {
         }
     }
 
-    public function obtenerTodas() {
-        $sql = "SELECT o.*, m.nombre AS mesa 
-                FROM ordenes o 
-                JOIN mesas m ON o.id_mesa = m.id 
-                ORDER BY o.fecha DESC";
-        return $this->conexion->query($sql);
-    }
+    public function obtenerTodasConTotales() {
+    $sql = "
+        SELECT o.id, o.fecha, o.anulada, m.nombre AS mesa,
+               IFNULL(SUM(d.cantidad * d.precio_unitario), 0) AS total
+        FROM ordenes o
+        JOIN mesas m ON o.id_mesa = m.id
+        LEFT JOIN detalle_orden d ON o.id = d.id_orden
+        GROUP BY o.id
+        ORDER BY o.fecha DESC
+    ";
+    return $this->conexion->query($sql);
+}
+
 
     public function obtenerPorId($id) {
-        $stmt = $this->conexion->prepare("
-            SELECT o.id, o.fecha, m.nombre AS mesa, o.anulada, 
-                   SUM(do.cantidad * do.precio_unitario) AS total
-            FROM ordenes o
-            JOIN mesas m ON o.id_mesa = m.id
-            LEFT JOIN detalle_orden do ON o.id = do.id_orden
-            WHERE o.id = ?
-            GROUP BY o.id
-        ");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $resultado = $stmt->get_result();
-        return $resultado->fetch_assoc();
-    }
+    $stmt = $this->conexion->prepare("
+        SELECT o.*, m.nombre AS mesa
+        FROM ordenes o
+        JOIN mesas m ON o.id_mesa = m.id
+        WHERE o.id = ?
+    ");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
+
 
     public function obtenerDetalle($id_orden) {
         $stmt = $this->conexion->prepare("
