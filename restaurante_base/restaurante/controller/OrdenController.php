@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once 'model/Orden.php';
 require_once 'model/Mesa.php';
 require_once 'model/Plato.php';
@@ -7,7 +7,7 @@ class OrdenController {
 
     public function listar() {
         $modelo = new Orden();
-        $ordenes = $modelo->obtenerTodasConTotales();
+        $ordenes = $modelo->obtenerTodas();
         require 'view/orden/listar.php';
     }
 
@@ -86,15 +86,7 @@ class OrdenController {
             $modelo = new Orden();
             $orden = $modelo->obtenerPorId($id);
             $detalle = $modelo->obtenerDetalle($id);
-
-            // Calcular el total
-            $total = 0;
-            while ($item = $detalle->fetch_assoc()) {
-                $total += $item['cantidad'] * $item['precio_unitario'];
-            }
-
-            // Enviar datos a la vista
-            require 'view/orden/detalle.php'; // Aquí se carga la vista detalle.php
+            require 'view/orden/detalle.php';
         }
     }
 
@@ -107,3 +99,4 @@ class OrdenController {
         header('Location: router.php?controller=orden&action=listar');
     }
 }
+?>
