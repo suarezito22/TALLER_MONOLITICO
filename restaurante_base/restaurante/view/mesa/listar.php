@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="css/mesalistar.css">
+
+<div class="menu-container">
+
 <h2>Lista de Mesas</h2>
 <a href="router.php?controller=mesa&action=crear">Agregar Nueva Mesa</a>
 <br><br>
@@ -21,6 +25,8 @@
 </table>
 
 <br><br>
-<a href="../../index.php">
+<a href="/taller%20monolitico/TALLER_MONOLITICO/restaurante_base/restaurante/index.php">
     <button type="button">Volver al Menú</button>
 </a>
+
+</div>

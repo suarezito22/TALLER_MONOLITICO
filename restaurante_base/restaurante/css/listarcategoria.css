@@ -1,0 +1,105 @@
+/* Estilo general para el cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("../recursos/fondo listar cate.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Contenedor del menú */
+.menu-container {
+    width: 90%;
+    max-width: 900px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Título */
+h2 {
+    color: #000000;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Enlace para agregar nueva categoría */
+a[href*="action=crear"] {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #0d286a;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+a[href*="action=crear"]:hover {
+    background-color: #464643;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #007bff; /* Borde azul */
+    font-size: 1rem;
+   
+}
+
+/* Encabezados de tabla */
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Estilos para enlaces en acciones */
+td a {
+    margin: 0 5px;
+    color: #0d286a;
+    font-weight: bold;
+    text-decoration: none;
+    
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo especial para "Eliminar" */
+td a[href*="action=eliminar"] {
+    color: rgb(20, 2, 2);
+    font-weight: bold;
+    border: #0a0879;
+}
+
+/* Botón Volver al Menú */
+a[href*="index.php"] button {
+    background-color: #0a0879;
+    font-size: 1rem;
+    border-radius: 8px;
+    padding: 10px 20px;
+    border: none;
+    color: #f7f7f7;
+    cursor: pointer;
+}
+
+a[href*="index.php"] button:hover {
+    background-color: #242476;
+}
+

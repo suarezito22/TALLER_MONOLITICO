@@ -1,0 +1,103 @@
+/* Estilo global */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image: url('../recursos/fondo\ menu.jpeg'); /* Asegúrate que la ruta sea correcta */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Header con título */
+.header {
+    text-align: center;
+    margin-top: 20px;
+    
+}
+
+.header h1 {
+    
+    font-size: 2.5rem;
+    color: white; /* <-- Aquí está el cambio */
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* opcional para mejor contraste */
+    
+    
+}
+
+/* Estilo del menú de navegación */
+.navbar {
+    background-color: rgba(51, 51, 51, 0.7); /* versión semitransparente de #333 */
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Lista del menú */
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: inline-flex;
+}
+
+/* Ítems del menú */
+.menu-item {
+    position: relative;
+    margin: 0 30px;
+    font-size: 1.5rem;
+}
+
+.menu-item a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+}
+
+/* Submenú */
+/* Estilo del submenú */
+.submenu {
+    display: none; /* Mantiene oculto el submenú inicialmente */
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    min-width: 200px;
+    padding: 10px 0;
+    z-index: 10;
+    border-radius: 4px;
+    opacity: 0; /* Inicialmente no visible */
+    visibility: hidden; /* Lo oculta */
+    transform: translateY(10px); /* Lo coloca un poco más abajo */
+    transition: all 0.3s ease; /* Suaviza la transición */
+}
+
+/* Estilo de los enlaces del submenú */
+.submenu li a {
+    color: white;
+    padding: 8px 20px;
+    display: block;
+    text-decoration: none;
+}
+
+/* Cambio de color cuando el ratón pasa por encima */
+.submenu li a:hover {
+    background-color: #555;
+}
+
+/* Mostrar el submenú cuando el ratón pasa sobre el ítem */
+.menu-item:hover .submenu {
+    display: block; /* Muestra el submenú */
+    opacity: 1; /* Lo hace visible */
+    visibility: visible; /* Lo hace visible */
+    transform: translateY(0); /* Lo desplaza a su posición original */
+}
+

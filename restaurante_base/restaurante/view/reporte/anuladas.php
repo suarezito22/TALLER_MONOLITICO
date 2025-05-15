@@ -1,40 +1,43 @@
-<h2>Reporte de Órdenes Anuladas</h2>
+<link rel="stylesheet" href="css/anuladas.css">
 
-<form method="POST" action="router.php?controller=reporte&action=anuladas">
-    <label>Fecha Inicio:</label>
-    <input type="date" name="fecha_inicio" value="<?= $fechaInicio ?>" required>
+<div class="container">
+    <h2>Reporte de Órdenes Anuladas</h2>
 
-    <label>Fecha Fin:</label>
-    <input type="date" name="fecha_fin" value="<?= $fechaFin ?>" required>
+    <form method="POST" action="router.php?controller=reporte&action=anuladas">
+        <label>Fecha Inicio:</label>
+        <input type="date" name="fecha_inicio" value="<?= $fechaInicio ?>" required>
 
-    <button type="submit">Generar Reporte</button>
-</form>
+        <label>Fecha Fin:</label>
+        <input type="date" name="fecha_fin" value="<?= $fechaFin ?>" required>
 
-<?php if (!empty($ordenes)): ?>
-    <h3>Órdenes Anuladas</h3>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Fecha</th>
-            <th>Mesa</th>
-            <th>Total</th>
-        </tr>
-        <?php foreach ($ordenes as $o): ?>
-        <tr>
-            <td><?= $o['id'] ?></td>
-            <td><?= $o['fecha'] ?></td>
-            <td><?= $o['mesa'] ?></td>
-            <td>$<?= $o['total'] ?></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
+        <button type="submit">Generar Reporte</button>
+    </form>
 
-    <p><strong>Total de Órdenes Anuladas:</strong> $<?= $total ?></p>
-<?php elseif ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
-    <p>No se encontraron órdenes anuladas en el rango.</p>
-<?php endif; ?>
+    <?php if (!empty($ordenes)): ?>
+        <h3>Órdenes Anuladas</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Mesa</th>
+                <th>Total</th>
+            </tr>
+            <?php foreach ($ordenes as $o): ?>
+            <tr>
+                <td><?= $o['id'] ?></td>
+                <td><?= $o['fecha'] ?></td>
+                <td><?= $o['mesa'] ?></td>
+                <td>$<?= $o['total'] ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
 
-<br><br>
-<a href="../index.php">
-    <button type="button">Volver al Menú</button>
-</a>
+        <p><strong>Total de Órdenes Anuladas:</strong> $<?= $total ?></p>
+    <?php elseif ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
+        <p>No se encontraron órdenes anuladas en el rango.</p>
+    <?php endif; ?>
+
+    <a href="/taller%20monolitico/TALLER_MONOLITICO/restaurante_base/restaurante/index.php">
+        <button type="button">Volver al Menú</button>
+    </a>
+</div>
