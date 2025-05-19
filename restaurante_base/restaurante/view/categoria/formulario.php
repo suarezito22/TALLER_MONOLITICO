@@ -13,7 +13,8 @@
         <button type="submit"><?= isset($categoria) ? 'Actualizar' : 'Guardar' ?></button>
     </form>
 
-    <a href="/taller%20monolitico/TALLER_MONOLITICO/restaurante_base/restaurante/index.php">
+     <br><br>
+    <a href="index.php">
         <button type="button">Volver al Menú</button>
     </a>
 </div>

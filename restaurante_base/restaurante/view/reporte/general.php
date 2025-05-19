@@ -55,7 +55,7 @@
         <p>No se encontraron órdenes en el rango de fechas.</p>
     <?php endif; ?>
 
-    <a href="/taller%20monolitico/TALLER_MONOLITICO/restaurante_base/restaurante/index.php">
+    <a href="index.php">
         <button type="button">Volver al Menú</button>
     </a>
 </div>

@@ -37,7 +37,7 @@
         <p>No se encontraron órdenes anuladas en el rango.</p>
     <?php endif; ?>
 
-    <a href="/taller%20monolitico/TALLER_MONOLITICO/restaurante_base/restaurante/index.php">
+   <a href="index.php">
         <button type="button">Volver al Menú</button>
     </a>
 </div>

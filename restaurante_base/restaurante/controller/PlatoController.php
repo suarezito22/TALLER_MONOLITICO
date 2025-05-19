@@ -3,6 +3,7 @@ require_once 'model/Plato.php';
 require_once 'model/Categoria.php';
 
 class PlatoController {
+
     public function listar() {
         $modelo = new Plato();
         $platos = $modelo->obtenerTodos();
@@ -10,28 +11,53 @@ class PlatoController {
     }
 
     public function crear() {
-        $categorias = (new Categoria())->obtenerTodos();
+        $categoriaModel = new Categoria();
+        $categorias = $categoriaModel->obtenerTodos();
         require 'view/plato/formulario.php';
     }
 
     public function guardar() {
-        if (isset($_POST['descripcion'], $_POST['id_categoria'], $_POST['precio_unitario'], $_POST['cantidad'])) {
+        if (isset($_POST['descripcion'], $_POST['id_categoria'], $_POST['cantidad'], $_POST['precio_unitario'])) {
             $descripcion = trim($_POST['descripcion']);
-            $id_categoria = intval($_POST['id_categoria']);
-            $precio_unitario = floatval($_POST['precio_unitario']);
+            $categoria_id = intval($_POST['id_categoria']);
             $cantidad = intval($_POST['cantidad']);
+            $precio = floatval($_POST['precio_unitario']);
 
-            if ($descripcion !== "" && $id_categoria > 0 && $precio_unitario > 0 && $cantidad > 0) {
-                $plato = new Plato();
-                $plato->guardar($descripcion, $id_categoria, $precio_unitario, $cantidad);
-            }
+            $modelo = new Plato();
+            $modelo->guardar($descripcion, $categoria_id, $precio, $cantidad);
+        }
+        header('Location: router.php?controller=plato&action=listar');
+    }
+
+    public function editar() {
+        if (isset($_GET['id'])) {
+            $id = intval($_GET['id']);
+            $modelo = new Plato();
+            $plato = $modelo->obtenerPorId($id);
+            require 'view/plato/formulario.php';
+        }
+    }
+
+    public function actualizar() {
+        if (isset($_POST['id'], $_POST['descripcion'], $_POST['precio_unitario'])) {
+            $id = intval($_POST['id']);
+            $descripcion = trim($_POST['descripcion']);
+            $precio = floatval($_POST['precio_unitario']);
+
+            $modelo = new Plato();
+            $modelo->actualizar($id, $descripcion, $precio);
         }
         header('Location: router.php?controller=plato&action=listar');
     }
 
     public function eliminar() {
         if (isset($_GET['id'])) {
-            (new Plato())->eliminar(intval($_GET['id']));
+            $id = intval($_GET['id']);
+            $modelo = new Plato();
+
+            if (!$modelo->tieneOrdenesAsociadas($id)) {
+                $modelo->eliminar($id);
+            }
         }
         header('Location: router.php?controller=plato&action=listar');
     }

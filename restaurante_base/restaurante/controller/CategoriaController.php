@@ -10,18 +10,14 @@ class CategoriaController {
     }
 
     public function crear() {
-        $categoria = null;
         require 'view/categoria/formulario.php';
     }
 
     public function guardar() {
         if (isset($_POST['nombre'])) {
             $nombre = trim($_POST['nombre']);
-
-            if ($nombre !== "") {
-                $modelo = new Categoria();
-                $modelo->guardar($nombre);
-            }
+            $modelo = new Categoria();
+            $modelo->guardar($nombre);
         }
         header('Location: router.php?controller=categoria&action=listar');
     }
@@ -39,11 +35,8 @@ class CategoriaController {
         if (isset($_POST['id'], $_POST['nombre'])) {
             $id = intval($_POST['id']);
             $nombre = trim($_POST['nombre']);
-
-            if ($nombre !== "") {
-                $modelo = new Categoria();
-                $modelo->actualizar($id, $nombre);
-            }
+            $modelo = new Categoria();
+            $modelo->actualizar($id, $nombre);
         }
         header('Location: router.php?controller=categoria&action=listar');
     }
@@ -55,6 +48,9 @@ class CategoriaController {
 
             if (!$modelo->tienePlatosAsociados($id)) {
                 $modelo->eliminar($id);
+            } else {
+                session_start();
+                $_SESSION['mensaje_error'] = "❌ No se puede eliminar la categoría porque tiene platos asociados.";
             }
         }
         header('Location: router.php?controller=categoria&action=listar');
